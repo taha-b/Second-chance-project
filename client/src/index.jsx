@@ -1,29 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import ReactDOM from 'react-dom'
-import $ from 'jquery'
-import List from './components/List.jsx'
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import "antd/dist/antd.css";
+import { Button, DatePicker, Space, version } from "antd";
+import Login from "./components/login.jsx";
+import SignUp from "./components/signUp.jsx";
+import YourCV from "./components/yourCV.jsx";
+import Skills from "./components/skills.jsx";
+import List from "./components/list.jsx";
+import FinalList from "./components/finalList.jsx";
 
 const App = () => {
-  const [items, setItems] = useState([])
-  useEffect(() => {
-    $.ajax({
-      url: '/api/items',
-      success: (data) => {
-        console.log(data)
-        setItems(data)
-      },
-      error: (err) => {
-        console.log('err', err)
-      },
-    })
-  }, [])
-
   return (
     <div>
-      <h1>Item List</h1>
-      <List items={items} />
+      {/* <h1 className='khaddamni'>KHADDAMNI</h1>
+      <ul className='nav'>
+      <li><button className='login'>Login</button></li>
+      <li><button className='register'>SignUp</button></li>
+      </ul>
+      <div className='container'>
+        <u>Descreption</u>
+        <img src="./imgs/interview.jpg" className='background'/>
+        <p>To access to our app you need to follow some steps :
+          <ul>
+            <li className='firstStep'>
+              <u>Sign Up:</u>
+              <p>If you don't have an account you need to sign up it's for free</p>
+              </li>
+              <li className='secondStep'>
+              <u>Sign Up:</u>
+              <p>Now you already have an account fill your information and enjoy</p>
+              </li>
+            </ul> 
+        </p>
+        
+               
+      // </div> */}
+      {/* <Login/>  */}
+      {/* <SignUp/> */}
+      <Skills />
+      {/* <List/> */}
+      {/* <FinalList/> */}
+      {/* <YourCV/> */}
     </div>
-  )
-}
+  );
+};
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById("app"));
