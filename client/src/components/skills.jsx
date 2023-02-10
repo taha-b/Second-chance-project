@@ -10,11 +10,11 @@ import {
 } from "@ant-design/icons";
 import axios from "axios";
 
-const skills = ({ data }) => {
-  const [dataSkills, setDataSkills] = useState([]);
+const skills = () => {
+  const [skills, setSkills] = useState([]);
   const [newView, setNewView] = useState(false);
   const [newTitle, setNewTitle] = useState("");
-  const [dataSteps, setDataSteps] = useState([]);
+  const [steps, setSteps] = useState([]);
 
   useEffect(() => {
     getData();
@@ -25,18 +25,18 @@ const skills = ({ data }) => {
     axios
       .get("http://127.0.0.1:3000/api/skills")
       .then((result) => {
-        setDataSkills(result.data);
+        setSkills(result.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const getSteps = () => {
     axios
       .get("http://127.0.0.1:3000/api/steps")
       .then((result) => {
-        setDataSteps(result.data);
+        setSteps(result.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
 
   const myClickAdd = () => {
@@ -69,7 +69,7 @@ const skills = ({ data }) => {
 
   return (
     <div>
-      {dataSkills.map((element, i) => {
+      {skills.map((element, i) => {
         console.log("nt");
         return (
           <ul key={i}>
@@ -100,10 +100,12 @@ const skills = ({ data }) => {
                 </Button>
               </li>
             </div>
-            {dataSteps.map((element, i) => {
+            {steps.map((element, i) => {
               console.log(element);
               return (
-                <Timeline.Item color="green">{element.title}</Timeline.Item>
+                <Timeline.Item color={element.checked ? "green" : "gray"}>
+                  {element.title}
+                </Timeline.Item>
               );
             })}
           </ul>

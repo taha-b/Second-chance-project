@@ -9,17 +9,10 @@ CREATE TABLE users (
   fullName varchar(50) NOT NULL,
   adresseMail varchar(50) NOT NULL,
   passeword varchar(50) NOT NULL,
-  
   PRIMARY KEY (userId)
 );
 
-CREATE TABLE skills (
-  id int NOT NULL AUTO_INCREMENT UNIQUE,
-  title varchar(50) NOT NULL,
-  discription varchar(250),
-  PRIMARY KEY (id)
-    
-  );
+
 
 CREATE TABLE usersInformation (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
@@ -32,10 +25,21 @@ CREATE TABLE usersInformation (
   PRIMARY KEY (id) 
 );
 
+CREATE TABLE skills (
+  skillsId int NOT NULL AUTO_INCREMENT UNIQUE,
+  title varchar(50) NOT NULL,
+  discription varchar(250),
+  PRIMARY KEY (skillsId)
+  
+  );
+
 CREATE TABLE steps (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
   title varchar(50) NOT NULL,
-  checked BOOLEAN
+  checked BOOLEAN,
+  PRIMARY KEY (id),
+  skillsId int,
+  foreign key (skillsId) references  skills(skillsId)
   )
 
 

@@ -7,8 +7,8 @@ const getSteps = (req, res) => {
     };
 
     const addStep = (req, res) => {
-        const { title } = req.body;
-        db.query("INSERT INTO steps (title) VALUES (?)", [title])
+        const { title,checked } = req.body;
+        db.query("INSERT INTO steps (title,checked) VALUES (?,?)", [title,checked])
           .then((result) => res.send(result))
           .catch((error) => console.log(error));
       };

@@ -6,7 +6,7 @@ import Login from "./components/login.jsx";
 import SignUp from "./components/signUp.jsx";
 import YourCV from "./components/yourCV.jsx";
 import Skills from "./components/skills.jsx";
-import List from "./components/list.jsx";
+import StepForm from "./components/stepForm.jsx";
 import FinalList from "./components/finalList.jsx";
 
 const App = () => {
@@ -37,8 +37,8 @@ const App = () => {
       // </div> */}
       {/* <Login/>  */}
       {/* <SignUp/> */}
-      <Skills />
-      {/* <List/> */}
+      {/* <Skills /> */}
+      <StepForm />
       {/* <FinalList/> */}
       {/* <YourCV/> */}
     </div>
