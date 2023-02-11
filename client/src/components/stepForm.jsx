@@ -5,7 +5,6 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const list = () => {
-  const [view, setView] = useState([]);
   const [stepTitle, setStepTitle] = useState("");
   const [checked, setChecked] = useState(false);
   const [skills, setSkills] = useState([]);
@@ -13,7 +12,7 @@ const list = () => {
 
   useEffect(() => {
     getSkills();
-  }, [view]);
+  }, []);
 
   const getSkills = () => {
     axios
@@ -24,16 +23,17 @@ const list = () => {
       .catch((err) => console.error(err));
   };
 
-  const myClickAdd = () => {
+  const submitForm = () => {
     axios
       .post("http://127.0.0.1:3000/api/step", {
         stepTitle,
         checked,
-        skill: selectedSkill,
+        skillId: selectedSkill,
       })
       .then((result) => {
-        console.log(result);
-        setView(!view);
+        setSelectedSkill("");
+        setStepTitle("");
+        setChecked(false);
       })
       .catch((err) => console.log(err));
   };
@@ -63,7 +63,7 @@ const list = () => {
         <div>
           <Select
             onChange={(value) => setSelectedSkill(value)}
-            placeholder="Select a skill"
+            placeholder="Parent skill"
             value={selectedSkill}
             style={{ width: 200 }}
           >
@@ -76,17 +76,17 @@ const list = () => {
           <Input
             onChange={(event) => setStepTitle(event.target.value)}
             className="Steps"
-            placeholder="New Step"
+            placeholder="Step title"
           />
           <Checkbox
-            onChange={(event) => setChecked(event.target.value)}
+            onChange={(event) => setChecked(event.target.checked)}
             defaultChecked={false}
             className="newStep-checkbox"
           >
             Checked
           </Checkbox>
         </div>
-        <Button onClick={myClickAdd} type="primary">
+        <Button onClick={submitForm} type="primary">
           <PlusCircleOutlined />
         </Button>
       </Col>

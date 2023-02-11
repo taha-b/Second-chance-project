@@ -7,7 +7,7 @@ const selectAll = function (req, res) {
   .catch((err)=>console.log(err))};
 
 const selectAllWithRelation = function (req, res) {
-  db.query("SELECT * FROM skill INNER JOIN step ON skill.skillId = step.skillId")
+  db.query("SELECT * FROM skill LEFT JOIN step ON skill.skillId = step.skillId")
   .then((result)=>{res.send(result[0])
   })    
   .catch((err)=>console.log(err))};

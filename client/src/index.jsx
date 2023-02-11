@@ -8,6 +8,7 @@ import YourCV from "./components/yourCV.jsx";
 import Skills from "./components/skills.jsx";
 import StepForm from "./components/stepForm.jsx";
 import FinalList from "./components/finalList.jsx";
+import SkillForm from "./components/skillForm.jsx";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
       {/* <Login/>  */}
       {/* <SignUp/> */}
       <Skills />
+      {/* <SkillForm /> */}
       {/* <StepForm /> */}
       {/* <FinalList/> */}
       {/* <YourCV/> */}
