@@ -16,14 +16,14 @@ const getSteps = (req, res) => {
     const updateStep = (req, res) => {
     const id = req.params.id;
     const { stepTitle} = req.body;
-    db.query("UPDATE step SET stepTitle = ? WHERE id = ?", [stepTitle,id])
+    db.query("UPDATE step SET stepTitle = ? WHERE stepId = ?", [stepTitle,id])
     .then((result)=>res.send(result))
     .catch((error)=>console.log(error))
     };
 
     const deleteStep = (req, res) => {
         const { id } = req.params;
-        db.query("DELETE FROM step WHERE id = ?", [id])
+        db.query("DELETE FROM step WHERE stepId = ?", [id])
         .then((result)=>res.send(result))
         .catch((error)=>console.log(error))
       }

@@ -9,6 +9,7 @@ import Skills from "./components/skills.jsx";
 import StepForm from "./components/stepForm.jsx";
 import FinalList from "./components/finalList.jsx";
 import SkillForm from "./components/skillForm.jsx";
+import EditPage from "./components/editPage.jsx";
 
 const App = () => {
   return (
@@ -38,8 +39,9 @@ const App = () => {
       // </div> */}
       {/* <Login/>  */}
       {/* <SignUp/> */}
-      <Skills />
+      {/* <Skills /> */}
       {/* <SkillForm /> */}
+      <EditPage />
       {/* <StepForm /> */}
       {/* <FinalList/> */}
       {/* <YourCV/> */}
