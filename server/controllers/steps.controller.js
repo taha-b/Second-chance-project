@@ -6,6 +6,13 @@ const getSteps = (req, res) => {
     .catch((error)=>console.log)
     };
 
+    const selectOne = (req, res) => {
+      const id = req.params.id;
+      db.query("SELECT * FROM step WHERE stepId = ? ", [id])
+        .then((result) => res.send(result[0]))
+        .catch((err) => console.log(err));
+    };
+
     const addStep = (req, res) => {
         const { stepTitle,checked, skillId } = req.body;
         db.query("INSERT INTO step (stepTitle,checked,skillId) VALUES (?,?,?)", [stepTitle,checked, skillId])
@@ -30,6 +37,7 @@ const getSteps = (req, res) => {
 
 module.exports = {
 getSteps,
+selectOne,
 addStep,
 updateStep,
 deleteStep

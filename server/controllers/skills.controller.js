@@ -6,6 +6,13 @@ const selectAll = function (req, res) {
   })    
   .catch((err)=>console.log(err))};
 
+  const selectOne = (req, res) => {
+    const id = req.params.id;
+    db.query("SELECT * FROM skill WHERE skillId = ? ", [id])
+      .then((result) => res.send(result[0]))
+      .catch((err) => console.log(err));
+  };
+
 const selectAllWithRelation = function (req, res) {
   db.query("SELECT * FROM skill LEFT JOIN step ON skill.skillId = step.skillId")
   .then((result)=>{res.send(result[0])
@@ -38,6 +45,7 @@ const deleteSkill = (req, res) => {
   
   module.exports = { 
   selectAll,
+  selectOne,
   addSkill,
   updateSkill,
   deleteSkill,

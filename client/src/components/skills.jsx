@@ -3,8 +3,9 @@ import "antd/dist/antd.css";
 import { Button, Timeline, Space } from "antd";
 import { DeleteOutlined, SettingOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const skills = () => {
+const Skills = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
@@ -41,6 +42,8 @@ const skills = () => {
 
   return (
     <div>
+      <Link to="/skillForm">Add skill</Link>
+      <Link to="/stepForm">Add Step</Link>
       {skills.map((skill) => {
         return (
           <ul key={skill.id}>
@@ -64,4 +67,4 @@ const skills = () => {
   );
 };
 
-export default skills;
+export default Skills;

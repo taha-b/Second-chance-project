@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Button, Timeline, Space } from "antd";
-import { DeleteOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const skills = () => {
+const EditPage = () => {
   const [skills, setSkills] = useState([]);
 
   const deleteSkill = (skillId) => {
     axios
       .delete(`http://127.0.0.1:3000/api/skill/${skillId}`)
-      .then((result) => {
-        setSkills(result.data);
+      .then(() => {
+        getSkills();
       })
       .catch((err) => console.log(err));
   };
@@ -20,7 +25,7 @@ const skills = () => {
     axios
       .delete(`http://127.0.0.1:3000/api/step/${stepId}`)
       .then((result) => {
-        setSkills(result.data);
+        getSkills();
       })
       .catch((err) => console.log(err));
   };
@@ -63,23 +68,39 @@ const skills = () => {
         return (
           <ul key={skill.id}>
             <li>
-              <h1 className="skill">{skill.title}</h1>
-              <Button type="primary" onClick={deleteSkill(skill.skillId)}>
-                <DeleteOutlined />
-              </Button>
+              <Space align="center">
+                <h1 className="skill">{skill.title}</h1>
+                <Link to={"/skillForm/" + skill.id}>
+                  <Button type="primary">
+                    <EditOutlined />
+                  </Button>
+                </Link>
+
+                <Button type="primary" onClick={() => deleteSkill(skill.id)}>
+                  <DeleteOutlined />
+                </Button>
+              </Space>
             </li>
             {skill.steps.map((step) => {
               return (
                 <div>
-                  <Timeline.Item
-                    key={step.id}
-                    color={step.checked ? "green" : "gray"}
-                  >
-                    {step.title}
-                  </Timeline.Item>
-                  <Button type="primary" onClick={deleteStep(step.skillId)}>
-                    <DeleteOutlined />
-                  </Button>
+                  <Space align="center">
+                    <Timeline.Item
+                      key={step.id}
+                      color={step.checked ? "green" : "gray"}
+                    >
+                      {step.title}
+                    </Timeline.Item>
+                    <Link to={"/stepForm/" + step.id}>
+                      <Button type="primary">
+                        <EditOutlined />
+                      </Button>
+                    </Link>
+
+                    <Button type="primary" onClick={() => deleteStep(step.id)}>
+                      <DeleteOutlined />
+                    </Button>
+                  </Space>
                 </div>
               );
             })}
@@ -90,4 +111,4 @@ const skills = () => {
   );
 };
 
-export default skills;
+export default EditPage;
