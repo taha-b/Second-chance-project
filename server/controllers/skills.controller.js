@@ -1,33 +1,40 @@
 const db = require("../database-mysql");
 
 const selectAll = function (req, res) {
-  db.query("SELECT * FROM skills")
-  .then((result)=>res.send(result[0]))    
+  db.query("SELECT * FROM skill")
+  .then((result)=>{res.send(result[0])
+  })    
+  .catch((err)=>console.log(err))};
+
+const selectAllWithRelation = function (req, res) {
+  db.query("SELECT * FROM skill INNER JOIN step ON skill.skillId = step.skillId")
+  .then((result)=>{res.send(result[0])
+  })    
   .catch((err)=>console.log(err))};
 
 const selectOne = (req, res) => {
   const id = req.params.id;
-  db.query("SELECT * FROM skills WHERE id = ? ",[id])
+  db.query("SELECT * FROM skill WHERE id = ? ",[id])
   .then((result)=>res.send(result[0]))    
   .catch((err)=>console.log(err))
 };
 const addSkill = (req, res) => {
-  const { title } = req.body;
-  db.query("INSERT INTO skills (title) VALUES (?)", [title])
+  const { skillTitle } = req.body;
+  db.query("INSERT INTO skill (skillTitle) VALUES (?)", [skillTitle])
     .then((result) => res.send(result))
     .catch((error) => console.log(error));
 };
 
 const updateSkill = (req, res) => {
   const { id } = req.params;
-  const { title, discription } = req.body;
-  db.query("UPDATE skills SET title = ?, discription = ? WHERE id = ?", [title, discription, id])
+  const { skillTitle, discription } = req.body;
+  db.query("UPDATE skill SET skillTitle = ?, discription = ? WHERE id = ?", [skillTitle, discription, id])
     .then((result) => res.send(result))
     .catch((error)=>console.log(error))
 }
 const deleteSkill = (req, res) => {
   const { id } = req.params;
-  db.query("DELETE FROM skills WHERE id = ?", [id])
+  db.query("DELETE FROM skill WHERE id = ?", [id])
   .then((result)=>res.send(result))
   .catch((error)=>console.log(error))
 }
@@ -40,4 +47,5 @@ const deleteSkill = (req, res) => {
   addSkill,
   updateSkill,
   deleteSkill,
+  selectAllWithRelation
  };

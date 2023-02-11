@@ -6,7 +6,7 @@ import axios from "axios";
 
 const list = () => {
   const [view, setView] = useState([]);
-  const [title, setTitle] = useState("");
+  const [stepTitle, setStepTitle] = useState("");
   const [checked, setChecked] = useState(false);
   const [skills, setSkills] = useState([]);
   const [selectedSkill, setSelectedSkill] = useState("");
@@ -17,7 +17,7 @@ const list = () => {
 
   const getSkills = () => {
     axios
-      .get("http://127.0.0.1:3000/api/skills")
+      .get("http://127.0.0.1:3000/api/skill")
       .then((result) => {
         setSkills(result.data);
       })
@@ -26,8 +26,8 @@ const list = () => {
 
   const myClickAdd = () => {
     axios
-      .post("http://127.0.0.1:3000/api/steps", {
-        title,
+      .post("http://127.0.0.1:3000/api/step", {
+        stepTitle,
         checked,
         skill: selectedSkill,
       })
@@ -38,24 +38,24 @@ const list = () => {
       .catch((err) => console.log(err));
   };
 
-  const deleteStep = (id) => {
-    axios
-      .delete(`http://127.0.0.1:3000/api/steps/${id}`)
-      .then((result) => {
-        setView(!view);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const deleteStep = (id) => {
+  //   axios
+  //     .delete(`http://127.0.0.1:3000/api/step/${id}`)
+  //     .then((result) => {
+  //       setView(!view);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const updateClick = (id, title) => {
-    axios
-      .put(`http://127.0.0.1:3000/api/steps/${id}`, { title: newTitle })
-      .then((result) => {
-        console.log(result);
-        setView(!view);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const updateClick = (id, title) => {
+  //   axios
+  //     .put(`http://127.0.0.1:3000/api/step/${id}`, { title: newTitle })
+  //     .then((result) => {
+  //       console.log(result);
+  //       setView(!view);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <Row justify="center" align="middle">
@@ -68,11 +68,13 @@ const list = () => {
             style={{ width: 200 }}
           >
             {skills.map((element) => (
-              <Select.Option value={element.id}>{element.title}</Select.Option>
+              <Select.Option key={element.skillId} value={element.skillId}>
+                {element.skillTitle}
+              </Select.Option>
             ))}
           </Select>
           <Input
-            onChange={(event) => setTitle(event.target.value)}
+            onChange={(event) => setStepTitle(event.target.value)}
             className="Steps"
             placeholder="New Step"
           />

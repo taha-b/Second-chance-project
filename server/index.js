@@ -17,10 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/../client/dist"));
 
-app.use("/api/skills", itemRoutes);
+app.use("/api/skill", itemRoutes);
 app.use("/api/userInf",userRoutes);
 app.use("/api/users",signUpRoutes);
-app.use("/api/steps",stepsRoutes);
+app.use("/api/step",stepsRoutes);
 
 
 app.listen(PORT, function () {

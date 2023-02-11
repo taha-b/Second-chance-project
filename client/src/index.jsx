@@ -37,8 +37,8 @@ const App = () => {
       // </div> */}
       {/* <Login/>  */}
       {/* <SignUp/> */}
-      {/* <Skills /> */}
-      <StepForm />
+      <Skills />
+      {/* <StepForm /> */}
       {/* <FinalList/> */}
       {/* <YourCV/> */}
     </div>

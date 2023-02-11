@@ -12,8 +12,6 @@ CREATE TABLE users (
   PRIMARY KEY (userId)
 );
 
-
-
 CREATE TABLE usersInformation (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
   fullName varchar(50) NOT NULL,
@@ -25,22 +23,19 @@ CREATE TABLE usersInformation (
   PRIMARY KEY (id) 
 );
 
-CREATE TABLE skills (
-  skillsId int NOT NULL AUTO_INCREMENT UNIQUE,
-  title varchar(50) NOT NULL,
-  discription varchar(250),
-  PRIMARY KEY (skillsId)
-  
+CREATE TABLE skill (
+  skillId int NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  skillTitle varchar(50) NOT NULL,
+  discription varchar(250)
   );
 
-CREATE TABLE steps (
-  id int NOT NULL AUTO_INCREMENT UNIQUE,
-  title varchar(50) NOT NULL,
+CREATE TABLE step (
+  stepId int NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  stepTitle varchar(50) NOT NULL,
   checked BOOLEAN,
-  PRIMARY KEY (id),
-  skillsId int,
-  foreign key (skillsId) references  skills(skillsId)
-  )
+  skillId int ,
+  foreign key (skillId) references  skill(skillId)
+  );
 
 
 /*  Execute this file from the command line by typing:

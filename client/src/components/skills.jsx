@@ -13,7 +13,7 @@ import axios from "axios";
 const skills = () => {
   const [skills, setSkills] = useState([]);
   const [newView, setNewView] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
+  const [skillTitle, setSkillTitle] = useState("");
   const [steps, setSteps] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const skills = () => {
 
   const getData = () => {
     axios
-      .get("http://127.0.0.1:3000/api/skills")
+      .get("http://127.0.0.1:3000/api/skill")
       .then((result) => {
         setSkills(result.data);
       })
@@ -32,7 +32,7 @@ const skills = () => {
 
   const getSteps = () => {
     axios
-      .get("http://127.0.0.1:3000/api/steps")
+      .get("http://127.0.0.1:3000/api/step")
       .then((result) => {
         setSteps(result.data);
       })
@@ -41,7 +41,7 @@ const skills = () => {
 
   const myClickAdd = () => {
     axios
-      .post("http://127.0.0.1:3000/api/skills", { title: newTitle })
+      .post("http://127.0.0.1:3000/api/skill", { skillTitle })
       .then((result) => {
         console.log(result);
         setNewView(!newView);
@@ -51,7 +51,7 @@ const skills = () => {
 
   const deleteClick = (id) => {
     axios
-      .delete(`http://127.0.0.1:3000/api/skills/${id}`)
+      .delete(`http://127.0.0.1:3000/api/skill/${id}`)
       .then((result) => {
         setNewView(!newView);
       })
@@ -59,7 +59,7 @@ const skills = () => {
   };
   const updateClick = (id, title) => {
     axios
-      .put(`http://127.0.0.1:3000/api/skills/${id}`, { title: newTitle })
+      .put(`http://127.0.0.1:3000/api/skill/${id}`, { skillTitle })
       .then((result) => {
         console.log(result);
         setNewView(!newView);
@@ -75,7 +75,7 @@ const skills = () => {
           <ul key={i}>
             <div>
               <li>
-                <h1 className="skill">{element.title}</h1>
+                <h1 className="skill">{element.skillTitle}</h1>
               </li>
             </div>
             <div>
@@ -92,7 +92,7 @@ const skills = () => {
                 <Button
                   className="update"
                   onClick={() => {
-                    updateClick(element.id, newTitle);
+                    updateClick(element.id, skillTitle);
                   }}
                   type="primary"
                 >
@@ -104,7 +104,7 @@ const skills = () => {
               console.log(element);
               return (
                 <Timeline.Item color={element.checked ? "green" : "gray"}>
-                  {element.title}
+                  {element.stepTitle}
                 </Timeline.Item>
               );
             })}
@@ -115,7 +115,7 @@ const skills = () => {
         <Col span={6} offset={9}>
           <div>
             <Input
-              onChange={(event) => setNewTitle(event.target.value)}
+              onChange={(event) => setSkillTitle(event.target.value)}
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="New Skill"
             />
