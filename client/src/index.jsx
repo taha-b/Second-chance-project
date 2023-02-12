@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import { user } from "./config/user";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./components/login.jsx";
@@ -8,11 +9,16 @@ import Skills from "./components/skills.jsx";
 import StepForm from "./components/stepForm.jsx";
 import SkillForm from "./components/skillForm.jsx";
 import EditPage from "./components/editPage.jsx";
+import HomePage from "./components/homePage.jsx";
 
 const router = createHashRouter([
   {
     path: "/",
-    element: <Skills />,
+    element: <HomePage />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/signup",
@@ -25,6 +31,10 @@ const router = createHashRouter([
   {
     path: "/skillForm/:id",
     element: <SkillForm />,
+  },
+  {
+    path: "/stepForm/:id",
+    element: <StepForm />,
   },
   {
     path: "/stepForm",

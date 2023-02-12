@@ -42,8 +42,19 @@ const Skills = () => {
 
   return (
     <div>
-      <Link to="/skillForm">Add skill</Link>
-      <Link to="/stepForm">Add Step</Link>
+      <ul>
+        <li>
+          <Button type="primary">
+            <Link to="/skillForm" className="skillLink"></Link>
+          </Button>
+        </li>
+
+        <li>
+          <Button type="primary">
+            <Link to="/stepForm">Add Step</Link>
+          </Button>
+        </li>
+      </ul>
       {skills.map((skill) => {
         return (
           <ul key={skill.id}>
