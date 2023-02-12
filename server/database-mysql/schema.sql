@@ -12,21 +12,15 @@ CREATE TABLE users (
   PRIMARY KEY (userId)
 );
 
-CREATE TABLE usersInformation (
-  id int NOT NULL AUTO_INCREMENT UNIQUE,
-  fullName varchar(50) NOT NULL,
-  adresseMail varchar(250) NOT NULL,
-  phoneNumber varchar(250) NOT NULL,
-  age varchar(250) NOT NULL,
-  educations varchar(250) NOT NULL,
-  experiences varchar(250) NOT NULL,
-  PRIMARY KEY (id) 
-);
+
 
 CREATE TABLE skill (
   skillId int NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   skillTitle varchar(50) NOT NULL,
-  discription varchar(250)
+  discription varchar(250),
+  userId int,
+  foreign key (userId) references  users(userId)
+  
   );
 
 CREATE TABLE step (

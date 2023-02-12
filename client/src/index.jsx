@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { user } from "./config/user";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./components/login.jsx";

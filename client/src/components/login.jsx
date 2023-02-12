@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { setUser } from "../config/user.js";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Button, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -21,7 +19,7 @@ const login = () => {
         if (typeof r.data === "string") {
           alert(r.data);
         } else {
-          setUser(r.data);
+          localStorage.setItem("user", JSON.stringify(r.data));
           navigate("/public/");
         }
       })

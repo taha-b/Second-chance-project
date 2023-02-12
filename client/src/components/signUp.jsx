@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Button, Input, Row, Col } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -11,16 +12,20 @@ const signUp = () => {
   const [passeword, setPasseword] = useState("");
   const [checkPasseword, setCheckPasseword] = useState("");
 
+  const navigate = useNavigate();
   const myClick = () => {
     console.log(fullName, adresseMail, passeword, checkPasseword);
     if (!passeword || passeword !== checkPasseword) {
       alert("please check password");
     } else {
-      axios.post("http://localhost:3000/api/users", {
-        fullName: fullName,
-        adresseMail: adresseMail,
-        passeword: passeword,
-      });
+      axios
+        .post("http://localhost:3000/api/users", {
+          fullName: fullName,
+          adresseMail: adresseMail,
+          passeword: passeword,
+        })
+        .then((result) => navigate("/login"))
+        .catch((err) => console.log(err));
     }
   };
   return (

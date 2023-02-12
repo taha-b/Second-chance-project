@@ -8,6 +8,7 @@ import axios from "axios";
 
 const SkillForm = () => {
   const [skillTitle, setSkillTitle] = useState("");
+  const { userId } = JSON.parse(localStorage.getItem("user"))[0];
   const param = useParams();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const SkillForm = () => {
 
   const submitForm = () => {
     axios
-      .post("http://127.0.0.1:3000/api/skill", { skillTitle })
+      .post("http://127.0.0.1:3000/api/skill", { skillTitle, userId })
       .then((result) => {
         setSkillTitle("");
       })

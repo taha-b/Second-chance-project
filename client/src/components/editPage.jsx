@@ -12,6 +12,7 @@ import e from "cors";
 
 const EditPage = () => {
   const [skills, setSkills] = useState([]);
+  const { userId } = JSON.parse(localStorage.getItem("user"))[0];
 
   const deleteSkill = (skillId) => {
     console.log("fired");
@@ -39,27 +40,28 @@ const EditPage = () => {
 
   const getSkills = () => {
     axios
-      .get("http://127.0.0.1:3000/api/skill/relation")
+      .get("http://127.0.0.1:3000/api/skill/relation/" + userId)
       .then((result) => {
-        const skills = [];
-        result.data.forEach((skill) => {
-          skills[skill.skillId] = {
-            id: skill.skillId,
-            title: skill.skillTitle,
-            discription: skill.discription,
-            steps: [],
-          };
-        });
+        setSkills(result.data);
+        console.log(result.data);
+        // const skills = [];
+        // result.data.forEach((skill) => {
+        //   skills[skill.skillId] = {
+        //     id: skill.skillId,
+        //     title: skill.skillTitle,
+        //     discription: skill.discription,
+        //     steps: [],
+        //   };
+        // });
 
-        result.data.forEach((step) => {
-          skills[step.skillId].steps.push({
-            id: step.stepId,
-            title: step.stepTitle,
-            checked: step.checked,
-          });
-        });
-
-        setSkills(skills);
+        // result.data.forEach((step) => {
+        //   skills[step.skillId].steps.push({
+        //     id: step.stepId,
+        //     title: step.stepTitle,
+        //     checked: step.checked,
+        //   });
+        // });
+        // setSkills(skills);
       })
       .catch((err) => console.error(err));
   };
@@ -91,11 +93,11 @@ const EditPage = () => {
                     paddingRight: "50px",
                   }}
                 >
-                  <ul key={skill.id}>
+                  <ul key={skill.skillId}>
                     <li>
                       <Space align="center">
-                        <h1 className="skill">{skill.title}</h1>
-                        <Link to={"/skillForm/" + skill.id}>
+                        <h1 className="skill">{skill.skillTitle}</h1>
+                        <Link to={"/skillForm/" + skill.skillId}>
                           <Button type="primary">
                             <EditOutlined />
                           </Button>
@@ -103,7 +105,7 @@ const EditPage = () => {
 
                         <Button
                           type="primary"
-                          onClick={() => deleteSkill(skill.id)}
+                          onClick={() => deleteSkill(skill.skillId)}
                         >
                           <DeleteOutlined />
                         </Button>

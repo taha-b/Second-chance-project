@@ -4,38 +4,37 @@ import { Button, Timeline, Space } from "antd";
 import { DeleteOutlined, SettingOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 const Skills = () => {
+  const { userId } = JSON.parse(localStorage.getItem("user"))[0];
   const [skills, setSkills] = useState([]);
-
   useEffect(() => {
     getSkills();
   }, []);
 
   const getSkills = () => {
     axios
-      .get("http://127.0.0.1:3000/api/skill/relation")
+      .get("http://127.0.0.1:3000/api/skill/relation/" + userId)
       .then((result) => {
-        const skills = [];
+        setSkills(result.data);
+        console.log(result.data);
+        // const skills = [];
+        // result.data.forEach((skill) => {
+        //   skills[skill.skillId] = {
+        //     id: skill.skillId,
+        //     title: skill.skillTitle,
+        //     discription: skill.discription,
+        //     steps: [],
+        //   };
+        // });
 
-        result.data.forEach((skill) => {
-          skills[skill.skillId] = {
-            id: skill.skillId,
-            title: skill.skillTitle,
-            discription: skill.discription,
-            steps: [],
-          };
-        });
-
-        result.data.forEach((step) => {
-          skills[step.skillId].steps.push({
-            id: step.stepId,
-            title: step.stepTitle,
-            checked: step.checked,
-          });
-        });
-
-        setSkills(skills);
+        // result.data.forEach((step) => {
+        //   skills[step.skillId].steps.push({
+        //     id: step.stepId,
+        //     title: step.stepTitle,
+        //     checked: step.checked,
+        //   });
+        // });
+        // setSkills(skills);
       })
       .catch((err) => console.error(err));
   };
@@ -57,9 +56,9 @@ const Skills = () => {
       </ul>
       {skills.map((skill) => {
         return (
-          <ul key={skill.id}>
+          <ul key={skill.skillId}>
             <li>
-              <h1 className="skill">{skill.title}</h1>
+              <h1 className="skill">{skill.skillTitle}</h1>
             </li>
             {skill.steps.map((step) => {
               return (
