@@ -72,81 +72,69 @@ const EditPage = () => {
         height: "100vh",
         width: "100vw",
         backgroundImage:
-          'url("https://cdn.discordapp.com/attachments/802193325754810441/1074310098777817128/andrew-neel-cckf4TsHAuw-unsplash.jpg")',
+          'url("https://cdn.discordapp.com/attachments/802193325754810441/1074496375565328445/glenn-carstens-peters-RLw-UC03Gwc-unsplash.jpg")',
         backgroundSize: "cover",
       }}
     >
-      <Row>
-        {skills
-          .filter((e) => {
-            return e;
-          })
-          .map((skill) => {
-            return (
-              <Col span={6} offset={3}>
-                <div
-                  className="forms"
-                  style={{
-                    paddingTop: "30px",
-                    paddingBottom: "30px",
-                    paddingLeft: "50px",
-                    paddingRight: "50px",
-                  }}
-                >
-                  <ul key={skill.skillId}>
-                    <li>
-                      <Space align="center">
-                        <h1 className="skill">{skill.skillTitle}</h1>
-                        <Link to={"/skillForm/" + skill.skillId}>
-                          <Button type="primary">
-                            <EditOutlined />
+      {skills
+        .filter((e) => {
+          return e;
+        })
+        .map((skill) => {
+          return (
+            <div className="forms-skill">
+              <ul key={skill.skillId}>
+                <li>
+                  <Space align="center">
+                    <h1 className="skill">{skill.skillTitle}</h1>
+                    <Link to={"/skillForm/" + skill.skillId}>
+                      <Button type="primary">
+                        <EditOutlined />
+                      </Button>
+                    </Link>
+
+                    <Button
+                      type="primary"
+                      onClick={() => deleteSkill(skill.skillId)}
+                    >
+                      <DeleteOutlined />
+                    </Button>
+                  </Space>
+                </li>
+                {skill.steps
+                  .filter((e) => {
+                    return e;
+                  })
+                  .map((step) => {
+                    return (
+                      <div>
+                        <Space align="center">
+                          <Timeline.Item
+                            key={step.id}
+                            color={step.checked ? "green" : "red"}
+                          >
+                            {step.title}
+                          </Timeline.Item>
+                          <Link to={"/stepForm/" + step.id}>
+                            <Button type="primary">
+                              <EditOutlined />
+                            </Button>
+                          </Link>
+
+                          <Button
+                            type="primary"
+                            onClick={() => deleteStep(step.id)}
+                          >
+                            <DeleteOutlined />
                           </Button>
-                        </Link>
-
-                        <Button
-                          type="primary"
-                          onClick={() => deleteSkill(skill.skillId)}
-                        >
-                          <DeleteOutlined />
-                        </Button>
-                      </Space>
-                    </li>
-                    {skill.steps
-                      .filter((e) => {
-                        return e;
-                      })
-                      .map((step) => {
-                        return (
-                          <div>
-                            <Space align="center">
-                              <Timeline.Item
-                                key={step.id}
-                                color={step.checked ? "green" : "gray"}
-                              >
-                                {step.title}
-                              </Timeline.Item>
-                              <Link to={"/stepForm/" + step.id}>
-                                <Button type="primary">
-                                  <EditOutlined />
-                                </Button>
-                              </Link>
-
-                              <Button
-                                type="primary"
-                                onClick={() => deleteStep(step.id)}
-                              >
-                                <DeleteOutlined />
-                              </Button>
-                            </Space>
-                          </div>
-                        );
-                      })}
-                  </ul>
-                </div>
-              </Col>
-            );
-          })}
-      </Row>
+                        </Space>
+                      </div>
+                    );
+                  })}
+              </ul>
+            </div>
+          );
+        })}
     </div>
   );
 };

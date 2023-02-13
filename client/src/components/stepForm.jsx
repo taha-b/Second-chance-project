@@ -26,15 +26,6 @@ const list = () => {
       .catch((err) => console.error(err));
   };
 
-  const getStep = () => {
-    axios
-      .get("http://127.0.0.1:3000/api/step" + param.id)
-      .then((result) => {
-        setStepTitle(result.data[0].stepTitle);
-      })
-      .catch((err) => console.error(err));
-  };
-
   const submitForm = () => {
     axios
       .post("http://127.0.0.1:3000/api/step", {
@@ -59,54 +50,23 @@ const list = () => {
       .catch((err) => console.log(err));
   };
 
-  // const deleteStep = (id) => {
-  //   axios
-  //     .delete(`http://127.0.0.1:3000/api/step/${id}`)
-  //     .then((result) => {
-  //       setView(!view);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const updateClick = (id, title) => {
-  //   axios
-  //     .put(`http://127.0.0.1:3000/api/step/${id}`, { title: newTitle })
-  //     .then((result) => {
-  //       console.log(result);
-  //       setView(!view);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   return (
     <div
       style={{
         height: "100vh",
         width: "100vw",
         backgroundImage:
-          'url("https://cdn.discordapp.com/attachments/802193325754810441/1074310098777817128/andrew-neel-cckf4TsHAuw-unsplash.jpg")',
+          'url("https://cdn.discordapp.com/attachments/802193325754810441/1074491745246646372/thomas-bormans-pcpsVsyFp_s-unsplash.jpg")',
         backgroundSize: "cover",
+        backgroundPosition: "center center",
       }}
     >
-      <div
-        className="forms"
-        style={{
-          position: "absolute",
-          width: "35%",
-          transform: "translate(-50%, -50%)",
-          left: "50%",
-          top: "45%",
-          paddingTop: "30px",
-          paddingBottom: "30px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-        }}
-      >
+      <div className="forms">
         <Select
+          className="select"
           onChange={(value) => setSelectedSkill(value)}
           placeholder="Parent skill"
           value={selectedSkill}
-          style={{ width: 200 }}
         >
           {skills.map((element) => (
             <Select.Option key={element.skillId} value={element.skillId}>
@@ -115,13 +75,11 @@ const list = () => {
           ))}
         </Select>
         <Input
-          style={{ marginTop: "10px" }}
+          className="site-form-item-icon"
           onChange={(event) => setStepTitle(event.target.value)}
-          className="Steps"
           placeholder="Step title"
         />
         <Checkbox
-          style={{ marginTop: "10px" }}
           onChange={(event) => setChecked(event.target.checked)}
           defaultChecked={false}
           className="newStep-checkbox"
@@ -130,7 +88,7 @@ const list = () => {
         </Checkbox>
 
         <Button
-          style={{ marginTop: "10px" }}
+          className="login-form-button"
           type="primary"
           onClick={param && param.id ? editForm : submitForm}
         >

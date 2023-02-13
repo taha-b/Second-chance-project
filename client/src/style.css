@@ -11,17 +11,21 @@ body{
     align-items: center;
     margin-right: 80px;
   }
+
+
   
   .khaddamni {
     float: left;
-    margin-left: 70px;
+    margin-left: 120px;
     color: white;
+    margin-top: 40px;
  }
   
   .nav li {
     list-style: none;
     display: inline-block;
     margin:20px;
+    margin-top: 40px;
   }
   
   .nav button {
@@ -37,6 +41,33 @@ body{
     height: 39px;
   }
 
+  .background{
+float: right;
+width: 600px;
+height: 600px;
+border-radius: 10px;
+
+margin-right: 35px;
+  }
+
+  .container{
+    margin-top: 120px;
+margin-left: 50px;
+color: white;
+  }
+  
+  h1{
+    color: white;
+  }
+
+  h2{
+    color: white;
+  }
+
+  p{
+    font-size: medium;
+  }
+
   .register{
     background:rgb(255, 53, 167);
     border-radius: 4px;
@@ -45,17 +76,75 @@ body{
     height: 39px;
     color: white; 
   }
+
+  .enjoy{
+    color: rgb(49, 97, 255);
+    position: relative;
+    margin-top: 50px;
+    margin-left: 250px;
+  }
+
+  .homePage{
+    background-color: #282c34;
+  }
   
   .forms {
     border-radius: 16px;
     backdrop-filter: blur(5px);
     box-shadow: -11px 9px 5px 0px rgba(0,0,0,0.75);
+    position: absolute;
+          width: 35%;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          top: 45%;
+          padding: 30px 50px;
 
   }
   
   .forms .welcome {
     text-shadow: -3px 3px 2px rgba(0,0,0,0.6);
+    text-align: center;
+     color: white
   }
   ul {
     list-style-type: none;
     }
+
+    
+
+    .site-form-item-icon{
+      margin-top: 10px
+    }
+
+    .login-form-button{
+      width: 100%;
+       margin-top:30px
+    }
+
+    .register-now{
+      text-align:center;
+       margin-top:25px;
+        font-size: 25px
+    }
+
+    .select{
+      width:377px
+    }
+
+    .newStep-checkbox{
+      margin-top: 10px
+    }
+
+    .forms-skill{
+      
+      display: inline-block;
+      width: 400px;
+       margin-top: 50px;
+      margin-left: 50px;
+      padding: 30px 50px;
+      border-radius: 16px;
+    backdrop-filter: blur(5px);
+    box-shadow: -11px 9px 5px 0px rgba(0,0,0,0.75);
+    }
+
+    

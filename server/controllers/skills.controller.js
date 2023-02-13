@@ -14,7 +14,8 @@ const selectAll = function (req, res) {
       .catch((err) => console.log(err));
   };
 const selectAllWithRelation = function (req, res) {
-  db.query("SELECT skill.skillId, skill.skillTitle, step.stepId, step.stepTitle , step.checked FROM users LEFT JOIN skill ON users.userId = skill.userId LEFT JOIN step ON skill.skillId = step.skillId WHERE users.userId = 2;")
+  const {id} = req.params
+  db.query("SELECT skill.skillId, skill.skillTitle, step.stepId, step.stepTitle , step.checked FROM users LEFT JOIN skill ON users.userId = skill.userId LEFT JOIN step ON skill.skillId = step.skillId WHERE users.userId = ?;",[id])
   .then((result)=>{
     const arr = []
     result[0].forEach(element => {

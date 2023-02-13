@@ -39,52 +39,37 @@ const signUp = () => {
         backgroundPosition: "center center",
       }}
     >
-      <form
-        className="forms"
-        style={{
-          position: "absolute",
-          width: "35%",
-          transform: "translate(-50%, -50%)",
-          left: "50%",
-          top: "45%",
-          paddingTop: "30px",
-          paddingBottom: "30px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-        }}
-      >
-        <h1 style={{ textAlign: "center", color: "white" }} className="welcome">
-          WELCOME!
-        </h1>
+      <form className="forms">
+        <h1 className="welcome">WELCOME!</h1>
         <Input
+          className="site-form-item-icon"
           onChange={(event) => setFullName(event.target.value)}
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<UserOutlined />}
           placeholder="Full Name"
         />
         <Input
-          style={{ marginTop: "10px" }}
+          className="site-form-item-icon"
           onChange={(event) => setAdresseMail(event.target.value)}
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<UserOutlined />}
           type="addresseMail"
           placeholder="Adresse Mail"
         />
         <Input
-          style={{ marginTop: "10px" }}
+          className="site-form-item-icon"
           onChange={(event) => setPasseword(event.target.value)}
-          prefix={<LockOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined />}
           type="password"
           placeholder="Password"
         />
         <Input
-          style={{ marginTop: "10px" }}
+          className="site-form-item-icon"
           onChange={(event) => setCheckPasseword(event.target.value)}
-          prefix={<LockOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined />}
           type="password"
           placeholder="tap again your Password"
         />
         <Button
           onClick={myClick}
-          style={{ width: "100%", marginTop: "30px" }}
           type="primary"
           htmlType="submit"
           className="login-form-button"

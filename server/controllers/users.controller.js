@@ -18,7 +18,8 @@ const addNewUser = (req, res) => {
   };
 
   const login = (req, res) => {
-   db.query(`select * from users where adresseMail= ?  ;`, [req.params.email])
+    const {email} = req.params
+   db.query(`select * from users where adresseMail= ?  ;`, [email])
    .then((r)=>{
     if(r[0].length){
       if(r[0][0].passeword === req.headers.passeword){

@@ -43,35 +43,28 @@ const SkillForm = () => {
   };
 
   return (
-    <div>
-      <div
-        className="forms"
-        style={{
-          position: "absolute",
-          width: "35%",
-          transform: "translate(-50%, -50%)",
-          left: "50%",
-          top: "45%",
-          paddingTop: "30px",
-          paddingBottom: "30px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-        }}
-      >
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        backgroundImage:
+          'url("https://cdn.discordapp.com/attachments/802193325754810441/1074491745246646372/thomas-bormans-pcpsVsyFp_s-unsplash.jpg")',
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+      }}
+    >
+      <div className="forms">
         <Input
-          style={{ marginTop: "10px" }}
+          className="site-form-item-icon"
           onChange={(event) => setSkillTitle(event.target.value)}
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<UserOutlined />}
           placeholder="Skill title"
           value={skillTitle}
         />
         <Upload>
-          <Button style={{ marginTop: "10px" }} icon={<UploadOutlined />}>
-            Image
-          </Button>
+          <Button icon={<UploadOutlined />}>Image</Button>
         </Upload>
         <Button
-          style={{ marginTop: "10px" }}
           onClick={param && param.id ? editForm : submitForm}
           className="login-form-button"
           type="primary"
